@@ -16,4 +16,10 @@ RUN apt-get update && apt-get install -y \
 	openssl \
 	python-pip 
 
-CMD['/bin/bash']
+RUN easy_install pip
+
+RUN pip install virtualenv
+
+RUN pip install virtualenvwrapper --upgrade --ignore-installed six
+
+ 
