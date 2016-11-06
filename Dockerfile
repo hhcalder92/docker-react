@@ -1,4 +1,6 @@
 FROM ubuntu:16.04
+#docker file 
+
 
 RUN apt-get update && apt-get install -y \
 	git \
@@ -22,8 +24,8 @@ RUN pip install virtualenv
 
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 
-USER www-data
-WORKDIR /var/www
+#USER www-data
+#WORKDIR /var/www
 
 
 COPY scripts/ /scripts/
