@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
 	libpq-dev \
 	libjpeg-dev \
 	openssl \
-	python-pip 
+	python-pip \
+	libcurl4-openssl-dev
 
 RUN easy_install pip
 
@@ -27,8 +28,9 @@ RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 #USER www-data
 #WORKDIR /var/www
 
+CMD mkdir -p /scripts
 
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
- 
+CMD /scripts/configure.sh 
