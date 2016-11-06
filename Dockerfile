@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 #docker file 
 
+CMD mkdir -p /etc/supervisor/conf.d
 
 RUN apt-get update && apt-get install -y \
 	git \
@@ -17,9 +18,9 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	openssl \
 	python-pip \
-	libcurl4-openssl-dev
-	sudo \
-	vi
+	libcurl4-openssl-dev \
+	uwsgi \
+	vi \
 
 
 RUN easy_install pip
@@ -36,4 +37,6 @@ CMD mkdir -p /scripts
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
-CMD /scripts/configure.sh 
+CMD /scripts/configure.sh
+
+ 
