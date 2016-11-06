@@ -26,4 +26,7 @@ USER www-data
 WORKDIR /var/www
 
 
+COPY scripts/ /scripts/
+COPY etc/ /etc/
+
  
