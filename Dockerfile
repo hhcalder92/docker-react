@@ -22,4 +22,8 @@ RUN pip install virtualenv
 
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 
+USER www-data
+WORKDIR /var/www
+
+
  
