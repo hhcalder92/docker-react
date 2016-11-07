@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 RUN mkdir -p /etc/supervisor/conf.d /scripts 
 
-// Deps 
+# Deps 
 RUN apt-get update && apt-get install -y \
 	git \
 	python \
