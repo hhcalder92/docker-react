@@ -12,9 +12,9 @@ cd /web
 
 [[ ! -x workon ]] && mkvirtualenv $PROJECT
 
-if cd $PROJECT ; then 
-	if  workon $PROJECT ; then 
-		sudo pip install -I pillow
+if  workon $PROJECT ; then 
+	if cd $PROJECT ; then 
+		pip install -I pillow
 		pip install psycopg2
 		pip install pycurl
 		pip install -r requirements.txt
