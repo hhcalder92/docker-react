@@ -4,7 +4,7 @@ PROJECT=artmart-city
 
 source /etc/bashrc
 
-mkdir -p /web/$PROJECT
+mkdir -p /web
 
 cd /web 
 
@@ -17,7 +17,7 @@ if  workon $PROJECT ; then
 		pip install -I pillow
 		pip install psycopg2
 		pip install pycurl
-#		pip install -r requirements.txt
+		pip install -r requirements.txt
 	else 
 		echo "virtualenv $PROJECT not found "
 	fi
