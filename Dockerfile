@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 	python-pip \
 	libcurl4-openssl-dev \
 	uwsgi \
-	vi \
+	vi 
 
 
 RUN easy_install pip
