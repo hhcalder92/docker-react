@@ -16,13 +16,11 @@ sed -i -e "s/{{PROJECT}}/$PROJECT/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 sed -i -e "s#{{DEPLOY_DIR}}#${DEPLOY_DIR}#g" 	$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 sed -i -e "s/{{WEB_USER}}/$WEB_USER/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 
-
-su - $PROJECT << block
 # import envirorment (virtualenv)
-source /etc/bashrc
+source /etc/bashrc 	
 
 cd $DEPLOY_ROOT 
-[[ ! -d $PROJECT ]] && git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.git $PROJECT
+git status ||  git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.git . 
  
 [[ ! -x workon ]] && mkvirtualenv $PROJECT
 if  workon $PROJECT ; then 
@@ -38,5 +36,5 @@ if  workon $PROJECT ; then
 else
 	echo "$PROJECT DNE"				;
 fi
-block 
 
+id

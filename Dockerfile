@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
 	uwsgi 
 
 RUN easy_install pip
-RUN sudo pip install -I pillow
+RUN pip install --upgrade pip
+RUN pip install -I pillow
 RUN pip install virtualenv psycopg2 pycurl
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 RUN npm install -g gulp
