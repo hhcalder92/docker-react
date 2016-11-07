@@ -13,11 +13,11 @@ cd /web
 [[ ! -x workon ]] && mkvirtualenv $PROJECT
 
 if  workon $PROJECT ; then 
-	if cd $PROJECT ; then 
+	if cd /web/$PROJECT ; then 
 		pip install -I pillow
 		pip install psycopg2
 		pip install pycurl
-		pip install -r requirements.txt
+#		pip install -r requirements.txt
 	else 
 		echo "virtualenv $PROJECT not found "
 	fi
