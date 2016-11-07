@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 #docker file 
 
-CMD mkdir -p /etc/supervisor/conf.d
+RUN mkdir -p /etc/supervisor/conf.d
 
 RUN apt-get update && apt-get install -y \
 	git \
@@ -32,11 +32,11 @@ RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 #USER www-data
 #WORKDIR /var/www
 
-CMD mkdir -p /scripts
+RUN mkdir -p /scripts
 
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
-CMD /scripts/configure.sh
+RUN /scripts/configure.sh
 
  
