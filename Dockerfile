@@ -30,14 +30,14 @@ RUN pip install virtualenv
 
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 
-#USER www-data
-#WORKDIR /var/www
+RUN npm install -g gulp
 
 RUN mkdir -p /scripts
 
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
-RUN /scripts/configure.sh
+RUN /scripts/configure_backend.sh
 
+RUN /scripts/configure_backend.sh
  
