@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
 	nodejs \
 	npm \
 	sudo \
+	codeblocks \
 	uwsgi 
 
 RUN easy_install pip

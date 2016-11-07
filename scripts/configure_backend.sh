@@ -9,7 +9,6 @@ export UWSGI_APPS_ENABLED_DIR=/etc/uwsgi/apps-enabled
 # Working dir 
 [[ ! -d $DEPLOY_ROOT ]] && mkdir -p $DEPLOY_ROOT
 [[ ! -d $UWSGI_APPS_ENABLED_DIR ]] && mkdir -p $UWSGI_APPS_ENABLED_DIR
-cd $DEPLOY_ROOT 
 
 # modify generic_supervisor.conf for project 
 cp /tmp/generic_supervisor.conf 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
@@ -22,6 +21,7 @@ su - $PROJECT << block
 # import envirorment (virtualenv)
 source /etc/bashrc
 
+cd $DEPLOY_ROOT 
 [[ ! -d $PROJECT ]] && git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.git $PROJECT
  
 [[ ! -x workon ]] && mkvirtualenv $PROJECT
