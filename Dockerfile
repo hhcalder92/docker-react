@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
 	openssl \
 	python-pip \
 	libcurl4-openssl-dev \
+	nodejs \
+	npm \
 	uwsgi 
 
 
