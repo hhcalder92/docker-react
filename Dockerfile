@@ -51,7 +51,7 @@ COPY etc/ /etc/
 #RUN useradd -ms /bin/bash artmart-city
 #RUN useradd -ms /bin/bash artmart-city-frontend
 
-RUN /scripts/configure_backend.sh
-RUN /scripts/configure_frontend.sh
+#RUN /scripts/configure_backend.sh
+#RUN /scripts/configure_frontend.sh
 
  
