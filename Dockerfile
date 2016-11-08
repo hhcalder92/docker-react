@@ -26,6 +26,9 @@ RUN apt-get update && apt-get install -y \
 	codeblocks \
 	uwsgi 
 
+USER www-data
+WORKDIR /web
+
 RUN easy_install pip
 RUN pip install --upgrade pip
 RUN pip install -I pillow
@@ -39,8 +42,8 @@ COPY scripts/ /scripts/
 COPY etc/ /etc/
 
 # Add users to container
-RUN useradd -ms /bin/bash artmart-city
-RUN useradd -ms /bin/bash artmart-city-frontend
+#RUN useradd -ms /bin/bash artmart-city
+#RUN useradd -ms /bin/bash artmart-city-frontend
 
 RUN /scripts/configure_backend.sh
 RUN /scripts/configure_frontend.sh
