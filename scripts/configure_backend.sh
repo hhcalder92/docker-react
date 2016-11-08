@@ -11,10 +11,10 @@ export UWSGI_APPS_ENABLED_DIR=/etc/uwsgi/apps-enabled
 [[ ! -d $UWSGI_APPS_ENABLED_DIR ]] && mkdir -p $UWSGI_APPS_ENABLED_DIR
 
 # modify generic_supervisor.conf for project 
-sudo cp /tmp/generic_supervisor.conf 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
-sudo sed -i -e "s/{{PROJECT}}/$PROJECT/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
-sudo sed -i -e "s#{{DEPLOY_DIR}}#${DEPLOY_DIR}#g" 	$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
-sudo sed -i -e "s/{{WEB_USER}}/$WEB_USER/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
+cp /tmp/generic_supervisor.conf 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
+sed -i -e "s/{{PROJECT}}/$PROJECT/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
+sed -i -e "s#{{DEPLOY_DIR}}#${DEPLOY_DIR}#g" 	$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
+sed -i -e "s/{{WEB_USER}}/$WEB_USER/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 
 # import envirorment (virtualenv)
 source /etc/bashrc 	
@@ -26,7 +26,7 @@ git status ||  git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.g
 if  workon $PROJECT ; then 
 	if cd $DEPLOY_DIR ; then 
 		pwd					;
-		sudo pip install -I pillow		;
+		pip install -I pillow		;
                 pip install psycopg2			;
                 pip install pycurl 			;
 		pip install -r requirements.txt 	;
