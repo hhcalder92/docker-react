@@ -26,14 +26,17 @@ RUN apt-get update && apt-get install -y \
 	codeblocks \
 	uwsgi 
 
-USER www-data
-WORKDIR /web
+#USER www-data
+#WORKDIR /web
 
-RUN sudo chown -R www-data /web /scripts /tmp
+#RUN sudo chown -R www-data /web /scripts /tmp
 
 
-RUN sudo easy_install pip
-RUN sudo pip install --upgrade pip
+#RUN sudo easy_install pip
+#RUN sudo pip install --upgrade pip
+
+RUN easy_install pip
+RUN pip install --upgrade pip
 RUN pip install -I pillow
 RUN pip install virtualenv psycopg2 pycurl
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
