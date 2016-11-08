@@ -19,13 +19,10 @@ sed -i -e "s/{{WEB_USER}}/$WEB_USER/g" 		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 # import envirorment (virtualenv)
 source /etc/bashrc 	
 
-cd $DEPLOY_ROOT 
-git status ||  git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.git . 
- 
-[[ ! -x workon ]] && mkvirtualenv $PROJECT
-if  workon $PROJECT ; then 
+[[ ! -x workon $PROJECT ]] && mkvirtualenv $PROJECT
+#if  workon $PROJECT ; then 
 	if cd $DEPLOY_DIR ; then 
-		pwd					;
+		git status ||  git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.git . 
 		pip install -I pillow		;
                 pip install psycopg2			;
                 pip install pycurl 			;
@@ -33,8 +30,8 @@ if  workon $PROJECT ; then
 	else 
 		echo "virtualenv $PROJECT not found "	;
 	fi
-else
-	echo "$PROJECT DNE"				;
-fi
+#else
+#	echo "$PROJECT DNE"				;
+#fi
 
 id
