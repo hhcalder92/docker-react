@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
 	npm \
 	sudo \
 	codeblocks \
-	uwsgi 
+	uwsgi-core 
 
 #USER www-data
 #WORKDIR /web
@@ -37,10 +37,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN easy_install pip
 RUN pip install --upgrade pip
-RUN pip install -I pillow
-RUN pip install virtualenv psycopg2 pycurl
-RUN pip install virtualenvwrapper --upgrade --ignore-installed six
-RUN npm install -g gulp
+#RUN pip install -I pillow
+#RUN pip install virtualenv psycopg2 pycurl
+#RUN pip install virtualenvwrapper --upgrade --ignore-installed six
+#RUN npm install -g gulp
 
 # Copy Resources 
 COPY common /tmp/
@@ -51,7 +51,7 @@ COPY etc/ /etc/
 #RUN useradd -ms /bin/bash artmart-city
 #RUN useradd -ms /bin/bash artmart-city-frontend
 
-#RUN /scripts/configure_backend.sh
+RUN /scripts/configure_backend.sh
 #RUN /scripts/configure_frontend.sh
 
  
