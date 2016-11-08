@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 USER www-data
 WORKDIR /web
 
-RUN sudo chown -R john:mygroup /web /scripts /tmp
+RUN sudo chown -R www-data /web /scripts /tmp
 
 
 RUN sudo easy_install pip
