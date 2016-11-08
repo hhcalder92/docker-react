@@ -1,8 +1,6 @@
 FROM ubuntu:16.04
 #docker file 
 
-RUN mkdir -p /etc/supervisor/conf.d /scripts 
-
 # Deps 
 RUN apt-get update && apt-get install -y \
 	git \
@@ -24,11 +22,13 @@ RUN apt-get update && apt-get install -y \
 	npm \
 	sudo \
 	codeblocks \
-	uwsgi-core 
+	uwsgi-core  \
+	uwsgi-plugin-python
 
 #USER www-data
 #WORKDIR /web
 
+RUN mkdir -p /etc/supervisor/conf.d /scripts 
 #RUN sudo chown -R www-data /web /scripts /tmp
 
 
@@ -37,17 +37,19 @@ RUN apt-get update && apt-get install -y \
 
 RUN easy_install pip
 RUN pip install --upgrade pip
-#RUN pip install -I pillow
-#RUN pip install virtualenv psycopg2 pycurl
-#RUN pip install virtualenvwrapper --upgrade --ignore-installed six
-#RUN npm install -g gulp
+RUN pip install -I pillow
+RUN pip install virtualenv psycopg2 pycurl
+RUN pip install virtualenvwrapper --upgrade --ignore-installed six
+RUN npm install -g gulp
 
 # Copy Resources 
-COPY common /tmp/
+COPY common/ /tmp/
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
 # Add users to container
+#RUN useradd -ms /bin/bash 
+
 #RUN useradd -ms /bin/bash artmart-city
 #RUN useradd -ms /bin/bash artmart-city-frontend
 
