@@ -29,6 +29,9 @@ RUN apt-get update && apt-get install -y \
 USER www-data
 WORKDIR /web
 
+RUN sudo chown -R john:mygroup /web /scripts /tmp
+
+
 RUN easy_install pip
 RUN pip install --upgrade pip
 RUN pip install -I pillow
