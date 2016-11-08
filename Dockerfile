@@ -32,8 +32,8 @@ WORKDIR /web
 RUN sudo chown -R john:mygroup /web /scripts /tmp
 
 
-RUN easy_install pip
-RUN pip install --upgrade pip
+RUN sudo easy_install pip
+RUN sudo pip install --upgrade pip
 RUN pip install -I pillow
 RUN pip install virtualenv psycopg2 pycurl
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
