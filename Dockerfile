@@ -29,11 +29,8 @@ RUN apt-get update && apt-get install -y \
 #WORKDIR /web
 
 RUN mkdir -p /etc/supervisor/conf.d /scripts 
+#RUN groupadd -r www-data && useradd -r -g www-data www-data
 #RUN sudo chown -R www-data /web /scripts /tmp
-
-
-#RUN sudo easy_install pip
-#RUN sudo pip install --upgrade pip
 
 RUN easy_install pip
 RUN pip install --upgrade pip
@@ -48,12 +45,10 @@ COPY scripts/ /scripts/
 COPY etc/ /etc/
 
 # Add users to container
-#RUN useradd -ms /bin/bash 
-
 #RUN useradd -ms /bin/bash artmart-city
 #RUN useradd -ms /bin/bash artmart-city-frontend
 
-RUN /scripts/configure_backend.sh
+#RUN /scripts/configure_backend.sh
 #RUN /scripts/configure_frontend.sh
 
  
