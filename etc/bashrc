@@ -1,4 +1,19 @@
 
 
-export PATH=/usr/local/bin:$PATH
-source /usr/local/bin/virtualenvwrapper.sh
+# Enviroment Varibles
+export PROJECT=artmart-city
+export DEPLOY_ROOT=/web
+export HOME=$DEPLOY_ROOT
+export DEPLOY_DIR=$DEPLOY_ROOT/$PROJECT
+export WEB_USER=www-data
+
+export UWSGI_APPS_ENABLED_DIR=/etc/uwsgi/apps-enabled
+export UWSGI_APPS_AVAIL_DIR=/etc/uwsgi/apps-available
+export UWSGI_RUN_DIR=/run/uwsgi/app/$PROJECT
+export SUPERVISOR_CONF_DIR=/etc/supervisor/conf.d
+export UWSGI_SOCKET_PATH=127.0.0.1:8000
+export UWSGI_WORKERS=1
+export UWSGI_MAX_REQUESTS=5000
+export UWSGI_BUFFER_SIZE=8192
+
+

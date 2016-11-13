@@ -1,6 +1,11 @@
 FROM ubuntu:16.04
 #docker file 
 
+# Create user
+#RUN groupadd -r www-data
+RUN grep www-data /etc/passwd  || useradd -r -g www-data www-data
+#RUN sudo chown -R www-data /web /scripts /tmp
+
 # Deps 
 RUN apt-get update && apt-get install -y \
 	git \
@@ -21,16 +26,11 @@ RUN apt-get update && apt-get install -y \
 	nodejs \
 	npm \
 	sudo \
+	nano \
+	flake8 \
 	codeblocks \
 	uwsgi-core  \
 	uwsgi-plugin-python
-
-#USER www-data
-#WORKDIR /web
-
-RUN mkdir -p /etc/supervisor/conf.d /scripts 
-#RUN groupadd -r www-data && useradd -r -g www-data www-data
-#RUN sudo chown -R www-data /web /scripts /tmp
 
 RUN easy_install pip
 RUN pip install --upgrade pip
@@ -44,11 +44,11 @@ COPY common/ /tmp/
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
-# Add users to container
-#RUN useradd -ms /bin/bash artmart-city
-#RUN useradd -ms /bin/bash artmart-city-frontend
+RUN /scripts/configure_backend.sh
 
-#RUN /scripts/configure_backend.sh
-#RUN /scripts/configure_frontend.sh
+#RUN chmod 755 -R /web 
+#RUN chown www-data -R /web
 
- 
+#CMD ["/usr/bin/uwsgi", "--ini", "/home/docker/code/uwsgi.ini"]
+CMD ["supervisord",  "-c" ,"/etc/supervisor/conf.d/artmart-city.ini"]
+
