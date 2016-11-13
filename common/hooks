@@ -1,0 +1,17 @@
+#!/bin/bash
+#Auto-check for pep8 and pylint so I don't check in bad code
+
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -e '\.py$')
+RESULT=0
+
+if [ -n "$FILES" ]; then
+	RESULT=$($HOME/.virtualenvs/$PROJECT/bin/flake8 $FILES)
+
+	if  [ ! -z "$RESULT" ]; then
+		echo "$RESULT"
+		exit 1
+	else
+		echo "Flake8 passed"
+		$HOME/.virtualenvs/$PROJECT/bin/git-pylint-commit-hook --pylint $HOME/.virtualenvs/$PROJECT/bin/pylint --pylintrc pylint.rc
+	fi
+fi
