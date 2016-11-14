@@ -52,5 +52,5 @@ RUN /scripts/configure_backend.sh
 EXPOSE 8000
 
 #CMD ["supervisord",  "-c" ,"/etc/supervisor/conf.d/artmart-city.ini"]
-CMD ["supervisord","--nodeamon","-c","/etc/supervisor/supervisord.conf"] 
+CMD ["supervisord","--nodaemon","-c","/etc/supervisor/supervisord.conf"] 
 
