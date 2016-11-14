@@ -49,6 +49,9 @@ RUN /scripts/configure_backend.sh
 #RUN chmod 755 -R /web 
 #RUN chown www-data -R /web
 
+EXPOSE 8000
+
 #CMD ["/usr/bin/uwsgi", "--ini", "/home/docker/code/uwsgi.ini"]
 CMD ["supervisord",  "-c" ,"/etc/supervisor/conf.d/artmart-city.ini"]
+
 
