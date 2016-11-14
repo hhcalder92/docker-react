@@ -13,10 +13,10 @@ mkdir -p $UWSGI_RUN_DIR
 chown ${WEB_USER}:${WEB_USER} $UWSGI_RUN_DIR
 
 # modify generic_supervisor.conf for uwsgi 
-cp /tmp/generic_supervisor.conf 				$SUPERVISOR_CONF_DIR/${PROJECT}.ini
-sed -i -e "s/{{PROJECT}}/$PROJECT/g" 				$SUPERVISOR_CONF_DIR/${PROJECT}.ini
-sed -i -e "s#{{DEPLOY_DIR}}#${DEPLOY_DIR}#g" 			$SUPERVISOR_CONF_DIR/${PROJECT}.ini
-sed -i -e "s/{{WEB_USER}}/$WEB_USER/g" 				$SUPERVISOR_CONF_DIR/${PROJECT}.ini
+cp /tmp/generic_supervisor.conf 				$SUPERVISOR_CONF_DIR/${PROJECT}.conf
+sed -i -e "s/{{PROJECT}}/$PROJECT/g" 				$SUPERVISOR_CONF_DIR/${PROJECT}.conf
+sed -i -e "s#{{DEPLOY_DIR}}#${DEPLOY_DIR}#g" 			$SUPERVISOR_CONF_DIR/${PROJECT}.conf
+sed -i -e "s/{{WEB_USER}}/$WEB_USER/g" 				$SUPERVISOR_CONF_DIR/${PROJECT}.conf
 
 # modify generic_supervisor.conf for uwsgi 
 cp /tmp/uwsgi_app.conf 		                		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
