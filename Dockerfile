@@ -51,7 +51,6 @@ RUN /scripts/configure_backend.sh
 
 EXPOSE 8000
 
-#CMD ["/usr/bin/uwsgi", "--ini", "/home/docker/code/uwsgi.ini"]
-CMD ["supervisord",  "-c" ,"/etc/supervisor/conf.d/artmart-city.ini"]
-
+#CMD ["supervisord",  "-c" ,"/etc/supervisor/conf.d/artmart-city.ini"]
+CMD ["supervisord"] 
 
