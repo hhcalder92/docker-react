@@ -29,17 +29,20 @@ sed -i -e "s/{{UWSGI_WORKERS}}/$UWSGI_WORKERS/g"	        $UWSGI_APPS_ENABLED_DIR
 sed -i -e "s#{{UWSGI_RUN_DIR}}#${UWSGI_RUN_DIR}#g"    		$UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 sed -i -e "s#{{UWSGI_SOCKET_PATH}}#${UWSGI_SOCKET_PATH}#g"      $UWSGI_APPS_ENABLED_DIR/${PROJECT}.ini
 
-chown www-data:www-data -R /web
-chmod 777 -R /web
+sed -i -e "s/{{WEB_USER}}/$WEB_USER/g"				/scripts/redeploy.sh
+sed -i -e "s#{{DEPLOY_ROOT}}#${DEPLOY_ROOT}#g"                  /scripts/redeploy.sh
 
-#usermod -d /web -s /bin/bash www-data 
+# move redeploy script 
+[[ -d $DEPLOY_ROOT/bin ]] || mkdir -p $DEPLOY_ROOT/bin
+[[ -x /scripts/${WEB_USER}_redeploy.sh ]] && mv /scripts/${WEB_USER}_redeploy.sh $DEPLOY_ROOT/bin/redeploy.sh 
 
-usermod -d /web -s /bin/bash www-data 
+# www-data permissions  
+chown www-data:www-data -R $DEPLOY_ROOT
+#chmod 755 -R $DEPLOY_ROOT
 
+# www-data $HOME
+usermod -d $DEPLOY_ROOT -s /bin/bash www-data 
+
+# www-data script 
 su -s /bin/bash -c /scripts/www-data.sh www-data  
 
-#[[ -d /root/.virtualenvs ]] && cp -R /root/.virtualenvs /web
-
-#chown www-data:www-data -R /web
-#chmod 775 -R /web
-#uwsgi --ini /etc/supervisor/conf.d/artmart-city.ini 

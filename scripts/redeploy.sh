@@ -1,13 +1,7 @@
 #!/bin/bash
-source /etc/bashrc
 
-workon $PROJECT 
+su -c "{{DEPLOY_ROOT}}/bin/redeploy.sh" {{WEB_USER}}
 
-cd $DEPLOY_ROOT
-git pull origin develop
-pip install -r requirements.txt
-
-python manage.py migrate 
-
-sudo supervisorctl restart uwsgi
+# restart 
+supervisorctl restart uwsgi
 
