@@ -22,7 +22,9 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	openssl \
 	python-pip \
+	memcached \
 	libcurl4-openssl-dev \
+	rabbitmq-server \
 	nodejs \
 	npm \
 	sudo \
@@ -31,6 +33,8 @@ RUN apt-get update && apt-get install -y \
 	codeblocks \
 	uwsgi-core  \
 	uwsgi-plugin-python
+
+RUN service rabbitmq-server start
 
 RUN easy_install pip
 RUN pip install --upgrade pip
