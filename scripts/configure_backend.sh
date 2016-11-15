@@ -32,9 +32,20 @@ sed -i -e "s#{{UWSGI_SOCKET_PATH}}#${UWSGI_SOCKET_PATH}#g"      $UWSGI_APPS_ENAB
 sed -i -e "s/{{WEB_USER}}/$WEB_USER/g"				/scripts/redeploy.sh
 sed -i -e "s#{{DEPLOY_ROOT}}#${DEPLOY_ROOT}#g"                  /scripts/redeploy.sh
 
-# move redeploy script 
+
+sed -i -e "s/{{WEB_USER}}/$WEB_USER/g"                          /scripts/runtests.sh
+sed -i -e "s#{{DEPLOY_ROOT}}#${DEPLOY_ROOT}#g"                  /scripts/runtests.sh
+
+
 [[ -d $DEPLOY_ROOT/bin ]] || mkdir -p $DEPLOY_ROOT/bin
+
+# move redeploy script 
 [[ -x /scripts/${WEB_USER}_redeploy.sh ]] && mv /scripts/${WEB_USER}_redeploy.sh $DEPLOY_ROOT/bin/redeploy.sh 
+
+# move runtests script 
+[[ -x /scripts/${WEB_USER}_runtests.sh ]] && mv /scripts/${WEB_USER}_runtests.sh $DEPLOY_ROOT/bin/runtests.sh
+
+
 
 # www-data permissions  
 chown www-data:www-data -R $DEPLOY_ROOT
