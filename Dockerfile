@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
 RUN easy_install pip
 RUN pip install --upgrade pip
 RUN pip install -I pillow
-RUN pip install virtualenv psycopg2 pycurl
+RUN pip install virtualenv psycopg2 pycurl coverage
 RUN pip install virtualenvwrapper --upgrade --ignore-installed six
 #RUN npm install -g gulp
 
