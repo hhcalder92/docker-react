@@ -16,4 +16,5 @@ export UWSGI_WORKERS=1
 export UWSGI_MAX_REQUESTS=5000
 export UWSGI_BUFFER_SIZE=8192
 
+export BACKEND_REPO=ssh://jenkins@calderon.solutions:29418/art/artmart-city.git 
 

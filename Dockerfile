@@ -1,6 +1,8 @@
 FROM ubuntu:16.04
 #docker file 
 
+COPY sshkeys /web/.ssh
+
 # Create user
 #RUN groupadd -r www-data
 RUN grep www-data /etc/passwd  || useradd -r -g www-data www-data

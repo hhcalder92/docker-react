@@ -13,7 +13,7 @@ whoami
 
 if cd $DEPLOY_DIR ; then 
         mkvirtualenv $PROJECT
-        git status ||  git clone http://docker@calderon.solutions/git/r/art/${PROJECT}.git . 
+        git status ||  git clone $BACKEND_REPO . 
         sudo pip install -I pillow           
         pip install psycopg2                    
         pip install pycurl                      
