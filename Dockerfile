@@ -36,8 +36,8 @@ RUN apt-get update && apt-get install -y \
 	uwsgi-core  \
 	uwsgi-plugin-python
 
-RUN service rabbitmq-server start
-RUN service memcached start
+#RUN service rabbitmq-server start
+#RUN service memcached start
 
 RUN easy_install pip
 RUN pip install --upgrade pip
