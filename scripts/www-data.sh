@@ -11,6 +11,9 @@ echo $PROJECT
 id
 whoami 
 
+# private key premissions 
+[[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chown 600 $DEPLOY_ROOT/.ssh/id_rsa
+
 if cd $DEPLOY_DIR ; then 
         mkvirtualenv $PROJECT
         git status ||  git clone $BACKEND_REPO . 
