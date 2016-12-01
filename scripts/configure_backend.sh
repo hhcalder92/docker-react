@@ -45,8 +45,8 @@ sed -i -e "s#{{DEPLOY_ROOT}}#${DEPLOY_ROOT}#g"                  /scripts/runtest
 # move runtests script 
 [[ -x /scripts/${WEB_USER}_runtests.sh ]] && mv /scripts/${WEB_USER}_runtests.sh $DEPLOY_ROOT/bin/runtests.sh
 
-## www-data permissions  
-#chown www-data:www-data -R $DEPLOY_ROOT
+# www-data permissions  
+chown www-data:www-data -R $DEPLOY_ROOT
 
 # private key premissions 
 [[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chown 600 $DEPLOY_ROOT/.ssh/id_rsa
