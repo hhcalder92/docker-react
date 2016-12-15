@@ -13,8 +13,8 @@ workon $PROJECT
 #redeploy 
 cd $DEPLOY_DIR
 
-git config --local user.name jenkins 
-git config --local user.email jenkins@artmart.city
+git config --global user.name jenkins 
+git config --global user.email jenkins@artmart.city
 
 git pull origin develop
 pip install -r requirements.txt
