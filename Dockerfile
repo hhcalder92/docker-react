@@ -34,7 +34,8 @@ RUN apt-get update && apt-get install -y \
 	flake8 \
 	codeblocks \
 	uwsgi-core  \
-	uwsgi-plugin-python
+	uwsgi-plugin-python \
+	nginx
 
 #RUN service rabbitmq-server start
 #RUN service memcached start

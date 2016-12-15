@@ -1,0 +1,46 @@
+upstream django {
+    server 127.0.0.1:8000;
+}
+
+server {
+    listen      80;
+    server_name {{ domain }};
+    charset     utf-8;
+
+    root        {{backend_directory}};
+   client_max_body_size 75M;
+
+    location /static {
+        autoindex on;
+        alias {{ static_directory }};
+    }
+
+    location /media {
+        autoindex on;
+        alias {{ media_directory }};
+    }
+
+    # exact "theconch.io/" will deliver the index.html
+    location / {
+        alias "{{ web_app_directory }}/src/";
+    }
+
+    location /api {
+        uwsgi_pass  django;
+        include     /etc/nginx/uwsgi_params;
+    }
+
+    location /admin {
+        uwsgi_pass  django;
+        include     /etc/nginx/uwsgi_params;
+    }
+
+    location /build.js {
+        alias {{ web_app_directory }}/src/build.js;
+    }
+
+    location = /css/style.css {
+        alias {{ web_app_directory }}/src/css/style.css;
+    }
+
+}
