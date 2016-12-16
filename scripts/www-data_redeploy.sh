@@ -13,9 +13,6 @@ workon $PROJECT
 #redeploy 
 cd $DEPLOY_DIR
 
-git config --global user.name jenkins 
-git config --global user.email jenkins@artmart.city
-
 git pull origin develop
 pip install -r requirements.txt
 

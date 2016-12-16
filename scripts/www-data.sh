@@ -8,14 +8,14 @@ echo 'export PATH=/usr/local/bin:$PATH ; source /usr/local/bin/virtualenvwrapper
 
 echo $HOME 
 echo $PROJECT
-id
-whoami 
 
 # private key premissions 
 [[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chown 600 $DEPLOY_ROOT/.ssh/id_rsa
 
 if cd $DEPLOY_DIR ; then 
         mkvirtualenv $PROJECT
+	git config --global user.name jenkins
+	git config --global user.email jenkins@artmart.city
         git status ||  git clone $BACKEND_REPO . 
         sudo pip install -I pillow           
         pip install psycopg2                    
