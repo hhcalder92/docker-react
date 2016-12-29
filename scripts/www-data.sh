@@ -12,6 +12,15 @@ echo $PROJECT
 # private key premissions 
 [[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chown 600 $DEPLOY_ROOT/.ssh/id_rsa
 
+mkdir -p $WEB_APP_NAME
+if cd $WEB_APP_NAME ; then 
+	git clone http://docker@calderon.solutions/git/r/art/${PROJECT_FRONTEND}.git .
+	npm install -g gulp
+	npm install
+fi
+
+mkdir -p $MEDIA_DIR $STATIC_DIR
+
 if cd $DEPLOY_DIR ; then 
         mkvirtualenv $PROJECT
 	git config --global user.name jenkins

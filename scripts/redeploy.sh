@@ -1,6 +1,6 @@
 #!/bin/bash
 
-su -c "{{DEPLOY_ROOT}}/bin/redeploy.sh" {{WEB_USER}}
+su -c "/web/bin/redeploy.sh" www-data
 
 # restart 
 supervisorctl restart uwsgi

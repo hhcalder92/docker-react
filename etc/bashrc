@@ -2,14 +2,29 @@
 
 # Enviroment Varibles
 export PROJECT=artmart-city
+export PROJECT_FRONTEND=artmart-city-frontend
 export DEPLOY_ROOT=/web
 export HOME=$DEPLOY_ROOT
 export DEPLOY_DIR=$DEPLOY_ROOT/$PROJECT
 export WEB_USER=www-data
 
+
+# Frontend 
+export DOMAIN=staging.artmart.city
+export BACKEND_APP_NAME=amc-api
+export WEB_APP_NAME=amc-web-app
+export APP_DIR=$HOME/$PROJECT_FRONTEND
+export BACKEND_DIR=$APP_DIR/$BACKEND_APP_NAME
+export WEB_APP_DIR=$APP_DIR/$WEB_APP_NAME
+export MEDIA_DIR=$APP_DIR/media/
+export STATIC_DIR=$APP_DIR/static/
+
+
+# Backend 
 export UWSGI_APPS_ENABLED_DIR=/etc/uwsgi/apps-enabled
 export UWSGI_APPS_AVAIL_DIR=/etc/uwsgi/apps-available
 export UWSGI_RUN_DIR=/run/uwsgi/app/$PROJECT
+export SUPERVISOR_DIR=/etc/supervisor
 export SUPERVISOR_CONF_DIR=/etc/supervisor/conf.d
 export UWSGI_SOCKET_PATH=0.0.0.0:8000
 export UWSGI_WORKERS=1

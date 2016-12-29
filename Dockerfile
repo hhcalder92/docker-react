@@ -27,15 +27,16 @@ RUN apt-get update && apt-get install -y \
 	memcached \
 	libcurl4-openssl-dev \
 	rabbitmq-server \
-	nodejs \
-	npm \
 	sudo \
 	nano \
 	flake8 \
 	codeblocks \
 	uwsgi-core  \
 	uwsgi-plugin-python \
-	nginx
+        python-software-properties \
+        nginx \
+        curl \
+        sudo
 
 #RUN service rabbitmq-server start
 #RUN service memcached start
@@ -52,12 +53,14 @@ COPY common/ /tmp/
 COPY scripts/ /scripts/
 COPY etc/ /etc/
 
-RUN /scripts/configure_backend.sh
+#RUN /scripts/configure_backend.sh
+RUN /scripts/configure.sh
 
 #RUN chmod 755 -R /web 
 #RUN chown www-data -R /web
 
 EXPOSE 8000
+EXPOSE 80
 
 #CMD ["supervisord",  "-c" ,"/etc/supervisor/conf.d/artmart-city.ini"]
 CMD ["supervisord","--nodaemon","-c","/etc/supervisor/supervisord.conf"] 
