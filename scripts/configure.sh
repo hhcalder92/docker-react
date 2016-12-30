@@ -9,6 +9,10 @@ apt-get install nodejs
 # import envirorment (virtualenv)
 source /etc/bashrc    
 
+# www-data sudo permission 
+echo "www-data ALL=(ALL) NOPASSWD: ALL"  >> /etc/sudoers
+
+
 # Working dir creation
 [[ ! -d $DEPLOY_DIR ]] && mkdir -p $DEPLOY_DIR
 [[ ! -d $UWSGI_APPS_ENABLED_DIR ]] && mkdir -p $UWSGI_APPS_ENABLED_DIR
@@ -30,7 +34,8 @@ if [[ -f /etc/nginx/sites-available/default ]]; then
 	sed -i -e "s#{{backend_directory}}#$BACKEND_DIR#g"      /etc/nginx/sites-available/default
 	sed -i -e "s#{{static_directory}}#$STATIC_DIR#g"        /etc/nginx/sites-available/default
 	sed -i -e "s#{{media_directory}}#$MEDIA_DIR#g"          /etc/nginx/sites-available/default
-	sed -i -e "s#{{web_app_directory}}#$WEB_APP_DIR#g"      /etc/nginx/sites-available/default
+	sed -i -e "s#{{web_app_directory}}#$APP_DIR#g"  	/etc/nginx/sites-available/default
+#        sed -i -e "s#{{web_app_directory}}#$WEB_APP_DIR#g"      /etc/nginx/sites-available/default
 
 	# move and link 
 	mv /etc/nginx/sites-available/default /etc/nginx/sites-available/$PROJECT

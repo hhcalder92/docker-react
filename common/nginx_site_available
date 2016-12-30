@@ -22,7 +22,7 @@ server {
 
     # exact "theconch.io/" will deliver the index.html
     location / {
-        alias "{{ web_app_directory }}/src/";
+        alias "{{ web_app_directory }}/build/";
     }
 
     location /api {

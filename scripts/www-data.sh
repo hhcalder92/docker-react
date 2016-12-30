@@ -17,8 +17,10 @@ if cd $APP_DIR ; then
         git config --global user.name jenkins
         git config --global user.email jenkins@artmart.city
         git clone http://docker@calderon.solutions/git/r/art/${PROJECT_FRONTEND}.git .
-	npm install -g gulp
+        sudo npm install -g gulp 
+#	npm install --save-dev gulp-babel babel-preset-es2015
 	npm install
+	gulp build 
 fi
 
 mkdir -p $MEDIA_DIR $STATIC_DIR
