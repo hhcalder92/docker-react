@@ -16,22 +16,24 @@ source /etc/bashrc
 mkdir -p $UWSGI_RUN_DIR
 chown ${WEB_USER}:${WEB_USER} $UWSGI_RUN_DIR
 
-# nginx config 
+# save original nginx config
 [[ -f /etc/nginx/conf.d/default.conf ]] && mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.1
 
+# nginx config 
 mkdir -p /etc/nginx/{sites-available,sites-enabled}
-if [[ -f /etc/nginx/sites-available/default ]]; then 
-	ln -s /etc/nginx/sites-available/default                /etc/nginx/sites-available/$PROJECT
-	ln -s /etc/nginx/sites-available/default                /etc/nginx/sites-enabled/$PROJECT
 
+# modify nginx template  
+if [[ -f /etc/nginx/sites-available/default ]]; then 
 	sed -i -e "s/{{domain}}/$DOMAIN/g"                      /etc/nginx/sites-available/default
 	sed -i -e "s#{{backend_directory}}#$BACKEND_DIR#g"      /etc/nginx/sites-available/default
 	sed -i -e "s#{{static_directory}}#$STATIC_DIR#g"        /etc/nginx/sites-available/default
 	sed -i -e "s#{{media_directory}}#$MEDIA_DIR#g"          /etc/nginx/sites-available/default
 	sed -i -e "s#{{web_app_directory}}#$WEB_APP_DIR#g"      /etc/nginx/sites-available/default
 
+	# move and link 
+	mv /etc/nginx/sites-available/default /etc/nginx/sites-available/$PROJECT
+	ln -s /etc/nginx/sites-available/$PROJECT /etc/nginx/sites-enabled/$PROJECT
 fi
-
 
 # modify generic_supervisor.conf for uwsgiSUPERVISOR_CONF_DIR 
 cp /tmp/generic_supervisor.conf 				$SUPERVISOR_CONF_DIR/${PROJECT}.conf
