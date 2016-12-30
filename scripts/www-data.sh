@@ -12,9 +12,11 @@ echo $PROJECT
 # private key premissions 
 [[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chown 600 $DEPLOY_ROOT/.ssh/id_rsa
 
-mkdir -p $WEB_APP_NAME
-if cd $WEB_APP_NAME ; then 
-	git clone http://docker@calderon.solutions/git/r/art/${PROJECT_FRONTEND}.git .
+mkdir -p $APP_DIR 
+if cd $APP_DIR ; then 
+        git config --global user.name jenkins
+        git config --global user.email jenkins@artmart.city
+        git clone http://docker@calderon.solutions/git/r/art/${PROJECT_FRONTEND}.git .
 	npm install -g gulp
 	npm install
 fi

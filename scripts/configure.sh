@@ -3,6 +3,8 @@
 
 # install nod e
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+apt-get update 
+apt-get install nodejs
 
 # import envirorment (virtualenv)
 source /etc/bashrc    
@@ -72,7 +74,7 @@ sed -i -e "s#{{DEPLOY_ROOT}}#${DEPLOY_ROOT}#g"                  /scripts/runtest
 chown www-data:www-data -R $DEPLOY_ROOT
 
 # private key premissions 
-[[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chown 600 $DEPLOY_ROOT/.ssh/id_rsa
+[[ -f $DEPLOY_ROOT/.ssh/id_rsa ]] && chmod 600 $DEPLOY_ROOT/.ssh/id_rsa
 
 # www-data $HOME
 usermod -d $DEPLOY_ROOT -s /bin/bash www-data 
