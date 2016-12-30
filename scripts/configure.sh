@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # install nod e
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 apt-get update 
@@ -11,7 +10,6 @@ source /etc/bashrc
 
 # www-data sudo permission 
 echo "www-data ALL=(ALL) NOPASSWD: ALL"  >> /etc/sudoers
-
 
 # Working dir creation
 [[ ! -d $DEPLOY_DIR ]] && mkdir -p $DEPLOY_DIR
@@ -36,7 +34,6 @@ if [[ -f /etc/nginx/sites-available/default ]]; then
 	sed -i -e "s#{{media_directory}}#$MEDIA_DIR#g"          /etc/nginx/sites-available/default
 	sed -i -e "s#{{web_app_directory}}#$APP_DIR#g"  	/etc/nginx/sites-available/default
 #        sed -i -e "s#{{web_app_directory}}#$WEB_APP_DIR#g"      /etc/nginx/sites-available/default
-
 	# move and link 
 	mv /etc/nginx/sites-available/default /etc/nginx/sites-available/$PROJECT
 	ln -s /etc/nginx/sites-available/$PROJECT /etc/nginx/sites-enabled/$PROJECT
@@ -70,10 +67,10 @@ sed -i -e "s#{{DEPLOY_ROOT}}#${DEPLOY_ROOT}#g"                  /scripts/runtest
 [[ -d $DEPLOY_ROOT/bin ]] || mkdir -p $DEPLOY_ROOT/bin
 
 # move redeploy script 
-[[ -x /scripts/${WEB_USER}_redeploy.sh ]] && mv /scripts/${WEB_USER}_redeploy.sh $DEPLOY_ROOT/bin/redeploy.sh 
+[[ -x /scripts/${WEB_USER}/redeploy.sh ]] && cp /scripts/${WEB_USER}/redeploy.sh $DEPLOY_ROOT/bin/redeploy.sh 
 
 # move runtests script 
-[[ -x /scripts/${WEB_USER}_runtests.sh ]] && mv /scripts/${WEB_USER}_runtests.sh $DEPLOY_ROOT/bin/runtests.sh
+[[ -x /scripts/${WEB_USER}/test.sh ]] && cp /scripts/${WEB_USER}/test.sh $DEPLOY_ROOT/bin/test.sh
 
 # www-data permissions  
 chown www-data:www-data -R $DEPLOY_ROOT

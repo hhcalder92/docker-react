@@ -4,7 +4,7 @@ upstream django {
 
 server {
     listen      80;
-    server_name {{domain}};
+    server_name {{domain}} www.{{domain}} default_server;
     charset     utf-8;
 
     root        {{backend_directory}};
