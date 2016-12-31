@@ -54,7 +54,7 @@ COPY scripts/ /scripts/
 COPY etc/ /etc/
 
 #RUN /scripts/configure_backend.sh
-#RUN /scripts/configure.sh
+RUN /scripts/configure.sh
 
 #RUN chmod 755 -R /web 
 #RUN chown www-data -R /web
