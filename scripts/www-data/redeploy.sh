@@ -35,6 +35,9 @@ backend()
 
 	# migrate 
 	python manage.py migrate
+
+	# collect static data 
+	python manage.py collectstatic --noinput
 }
 
 case $1 in 

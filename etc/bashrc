@@ -17,7 +17,7 @@ export APP_DIR=$HOME/$PROJECT_FRONTEND
 export BACKEND_DIR=$APP_DIR/$BACKEND_APP_NAME
 export WEB_APP_DIR=$APP_DIR/$WEB_APP_NAME
 export MEDIA_DIR=$APP_DIR/media/
-export STATIC_DIR=$APP_DIR/static/
+export STATIC_DIR=$DEPLOY_DIR/static/
 
 
 # Backend 
