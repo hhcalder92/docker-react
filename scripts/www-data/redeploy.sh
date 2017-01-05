@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BRANCH=${2:-develop}
+
 frontend()
 {
 	# Project Variables 
@@ -8,7 +10,7 @@ frontend()
 	echo -e "\n#### FRONTEND ####"
 
 	cd $APP_DIR
-	git pull origin develop
+	git pull origin $BRANCH
 	npm install
 	gulp build
 }
@@ -30,7 +32,7 @@ backend()
 	#redeploy 
 	cd $DEPLOY_DIR
 
-	git pull origin develop
+	git pull origin $BRANCH
 	pip install -r requirements.txt
 
 	# migrate 
@@ -42,14 +44,14 @@ backend()
 
 case $1 in 
 	frontend)
-		frontend()
+		frontend 
 		;;
 	backend)
-		backend()
+		backend
 		;;
 	*)
-		backend()
-		frontend()
+		backend
+		frontend
 		;;
 esac
  

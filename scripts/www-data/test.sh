@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BRANCH=${1:-develop}
+
 # Virtualenv
 export PATH=/usr/local/bin:$PATH
 source /usr/local/bin/virtualenvwrapper.sh
@@ -12,7 +14,7 @@ workon $PROJECT
 
 #redeploy 
 cd $DEPLOY_DIR
-git pull origin develop
+git pull origin $BRANCH
 pip install -r requirements.txt
 
 # test 
