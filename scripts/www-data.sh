@@ -23,17 +23,20 @@ if cd $APP_DIR ; then
 	gulp build 
 fi
 
-mkdir -p $MEDIA_DIR $STATIC_DIR
-
 if cd $DEPLOY_DIR ; then 
         mkvirtualenv $PROJECT
 	git config --global user.name jenkins
 	git config --global user.email jenkins@artmart.city
-        git status ||  git clone $BACKEND_REPO . 
+      	git clone $BACKEND_REPO . 
         sudo pip install -I pillow           
         pip install psycopg2                    
         pip install pycurl                      
-        pip install -r requirements.txt         
+        
+	pwd 
+	ls -l 
+	id 
+	
+	pip install -r requirements.txt         
 
 
         if [[ -d .git ]] ; then
@@ -41,10 +44,12 @@ if cd $DEPLOY_DIR ; then
                 [[ ! -x $DEPLOY_DIR/.git/hooks/pre-commit ]] && chmod 755 $DEPLOY_DIR/.git/hooks/pre-commit
         fi
 
-        [[ -f $DEPLOY_DIR/django_settings/local_settings.py ]] && rm $DEPLOY_DIR/django_settings/local_settings.py
+        [ -f $DEPLOY_DIR/django_settings/local_settings.py ] && rm $DEPLOY_DIR/django_settings/local_settings.py
         ln -s $DEPLOY_DIR/django_settings/local_settings.py.staging $DEPLOY_DIR/django_settings/local_settings.py
 else 
         echo "cd $DEPLOY_DIR failed"
         exit
 fi
+
+mkdir -p $MEDIA_DIR $STATIC_DIR
 
