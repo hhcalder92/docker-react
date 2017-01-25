@@ -7,7 +7,7 @@ export DEPLOY_ROOT=/web
 export HOME=$DEPLOY_ROOT
 export DEPLOY_DIR=$DEPLOY_ROOT/$PROJECT
 export WEB_USER=www-data
-
+export NODE_ENV=production
 
 # Frontend 
 export DOMAIN=staging.artmart.city
