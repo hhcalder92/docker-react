@@ -12,7 +12,7 @@ frontend()
 	cd $APP_DIR
 	git pull origin $BRANCH
 	npm install
-	gulp build
+	gulp
 }
 
 backend() 
